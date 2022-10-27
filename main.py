@@ -31,7 +31,7 @@ def main():
     print(f"Thanks for playing ({number_of_games} times)!")
 
 
-def scoresave(number_of_guesses, low, high):
+def score_save(number_of_guesses, low, high):
     """Save score to scores.txt with range"""
     with open("scores.txt", "a", encoding="utf-8-sig") as outfile:
         print(f"{number_of_guesses}|{high - low + 1}", file=outfile)
@@ -50,13 +50,13 @@ def play(low, high):
             print("Lower")
         guess = int(input(f"Guess a number between {low} and {high}: "))
     print(f"You got it in {number_of_guesses} guesses.")
-    if good_score(number_of_guesses, high - low + 1) == True:
+    if good_score(number_of_guesses, high - low + 1) is True:
         print("Good guessing!")
     else:
         pass
     choice = input("Do you want to save your score? (y/N) ")
     if choice.upper() == "Y":
-        scoresave(number_of_guesses, low, high)
+        score_save(number_of_guesses, low, high)
         return
     else:
         print("Fine then.")
