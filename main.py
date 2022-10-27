@@ -60,6 +60,7 @@ def play(low, high):
         return
     print("Fine then.")
 
+
 def set_limit(low):
     """Set high limit to new value from user input."""
     print("Set new limit")
@@ -71,21 +72,26 @@ def set_limit(low):
 
 
 def get_valid_number(prompt):
+    """Get valid number from user input, checks for errors and returns the number"""
+    number = 0
     is_valid = False
-    while is_valid == False:
+    while is_valid is False:
         try:
             number = int(input(prompt))
             is_valid = True
         except ValueError:
             print("Invalid number")
     return number
+
+
 def good_score(number_of_guesses, range_):
     if number_of_guesses <= math.ceil(math.log2(range_)):
         return True
 
 
-
 def high_scores():
+    """opens file, processes file contents, adds contents to scores list and
+        prints the list with string formatting"""
     scores = []
     with open("scores.txt") as in_file:
         for line in in_file:
@@ -95,5 +101,6 @@ def high_scores():
     for score in scores:
         marker = "!" if good_score(score[0], score[1]) else ""
         print(f"{score[0]} ({score[1]}) {marker}")
+
 
 main()
